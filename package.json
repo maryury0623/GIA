@@ -1,0 +1,20 @@
+{
+  "name": "gia",
+  "version": "1.0.0",
+  "description": "Sistema GIA con backend Node y frontend React",
+  "main": "index.js",
+  "scripts": {
+    "start:backend": "cd backend && node server.js",
+    "start:frontend": "cd frontend && npm start",
+    "dev": "concurrently \"npm run start:backend\" \"npm run start:frontend\""
+  },
+  "keywords": [],
+  "author": "Maryury Prado",
+  "license": "ISC",
+  "dependencies": {
+    "concurrently": "^8.0.0",
+    "cors": "^2.8.5",
+    "express": "^4.21.2",
+    "mysql2": "^3.14.3"
+  }
+}
