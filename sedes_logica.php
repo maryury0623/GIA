@@ -65,13 +65,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
             break;
 
         case 'DELETE':
-            parse_str(file_get_contents("php://input"), $params);
-            $id = $params['id'] ?? null;
+            // Primero intentamos obtener id desde la URL (?id=)
+            $id = $_GET['id'] ?? null;
+
+            // Si no vino por URL, intentamos desde el cuerpo JSON
+            if (!$id && isset($datos['id'])) {
+                $id = $datos['id'];
+            }
+
             if (!$id) {
                 http_response_code(400);
                 echo json_encode(["error" => "Falta ID para eliminar"]);
                 exit;
             }
+
             $stmt = $conexion->prepare("DELETE FROM sedes WHERE IdSedes=?");
             $stmt->bind_param("i", $id);
             if ($stmt->execute()) {
