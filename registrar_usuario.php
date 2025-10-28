@@ -2,7 +2,7 @@
 // Conexión a la base de datos GIA
 $conexion = new mysqli("localhost:3310", "root", "", "GIA");
 
-// Verificar conexión
+// Verificar la conexión
 if ($conexion->connect_error) {
     die("Error de conexión: " . $conexion->connect_error);
 }
